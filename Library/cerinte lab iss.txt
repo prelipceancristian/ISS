@@ -1,0 +1,4 @@
+1. Diagrama cazurilor de utilizare
+2. Descrierea cazurilor
+3. Modelul conceptual - diagrama de clasei
+4. Interfata grafica
