@@ -56,7 +56,7 @@
 
 <script>
 import constants from '../common/constants'
-//import { loginUser } from '../axios/requests'
+import { loginUser } from '../axios/requests'
 
 export default {
   data: () => ({
@@ -69,7 +69,12 @@ export default {
   }),
   methods: {
     submit () {
-      this.validate()
+      loginUser({
+        username: this.user,
+        password: this.password
+      }).then(response => {
+        console.log(response)
+      })
     },
     validate () {
       this.$refs.form.validate()

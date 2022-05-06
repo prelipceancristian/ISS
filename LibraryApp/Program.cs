@@ -4,7 +4,18 @@ using LibraryApp.DataAccess;
 using LibraryApp.DataAccess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                  builder =>
+                  {
+                      builder.WithOrigins("https://localhost:8080");
+                  });
+});
 
 // Add services to the container.
 
@@ -16,6 +27,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUserDataAccessService, UserDataAccessService>();
 builder.Services.AddScoped<ITerminalDataAccessService, TerminalDataAccessService>();
 builder.Services.AddScoped<IBookCopyDataAccessService, BookCopyDataAccessService>();
+builder.Services.AddScoped<IBookDataAccessService, BookDataAccessService>();
 
 builder.Services.AddScoped<IUserBusinessLogicService, UserBusinessLogicService>();
 builder.Services.AddScoped<ITerminalBusinessLogicService, TerminalBusinessLogicService>();
@@ -30,6 +42,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(c => c.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
 
 app.UseHttpsRedirection();
 

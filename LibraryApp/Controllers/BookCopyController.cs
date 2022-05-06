@@ -1,5 +1,6 @@
 ﻿using LibraryApp.BusinessLogic.Interfaces;
 using LibraryApp.Models;
+using LibraryApp.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryApp.Controllers
@@ -15,9 +16,10 @@ namespace LibraryApp.Controllers
         }
 
         [HttpGet]
-        public List<BookCopy> GetBookCopies()
+        public List<BookCopyDto> GetBookCopies()
         {
-            return _bookCopyBusinessLogicService.GetBookCopies();
+            var bookCopies = _bookCopyBusinessLogicService.GetBookCopies();
+            return bookCopies.Select(x => new BookCopyDto(x)).ToList();
         }
 
         [Route("GetByTerminalId")]
@@ -25,6 +27,12 @@ namespace LibraryApp.Controllers
         public List<BookCopy> GetBookCopiesByTerminal(Guid terminalId)
         {
             return _bookCopyBusinessLogicService.GetBookCopiesByTerminal(terminalId);   
+        }
+
+        [HttpPost("BorrowBook")]
+        public bool BorrowBook(BorrowBookCopyDto borrowBookCopyDto)
+        {
+            return _bookCopyBusinessLogicService.BorrowBook(borrowBookCopyDto.BookCopyId, borrowBookCopyDto.UserId, borrowBookCopyDto.Deadline);
         }
     }
 }

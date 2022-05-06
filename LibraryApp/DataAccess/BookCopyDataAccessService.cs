@@ -21,5 +21,15 @@ namespace LibraryApp.DataAccess
         {
             return _context.BookCopies.Where(c => c.TerminalId == terminalId).ToList();
         }
+
+        public BookCopy GetBookCopy(Guid bookCopyId)
+        {
+            return _context.BookCopies.FirstOrDefault(x => x.Id == bookCopyId);
+        }
+
+        public void UpdateBookCopy(BookCopy bookCopy)
+        {
+            _context.BookCopies.Update(bookCopy);
+        }
     }
 }

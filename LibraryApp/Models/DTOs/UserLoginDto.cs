@@ -2,7 +2,8 @@
 {
     public class UserLoginDto
     {
-        public User user;
-        public bool isValid;
+        public UserLoginDto() { }
+        public User user { get; set; }
+        public bool isValid { get; set; }
     }
 }

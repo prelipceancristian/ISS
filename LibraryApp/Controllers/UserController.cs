@@ -17,12 +17,12 @@ namespace LibraryApp.Controllers
             _userBusinessLogicService = userBusinessLogicService;
         }
 
-        [HttpGet]
-        public User Login(string username, string password)
+        [HttpPost]
+        public UserLoginDto Login([FromBody] LoginUserDto userDto)
         {
-            var result = _userBusinessLogicService.Login(username, password);
-            //return new UserLoginDto { isValid = result.isValid, user = result.user };
-            return result.isValid ? result.user : new User();
+            var result = _userBusinessLogicService.Login(userDto.Username, userDto.Password);
+            return new UserLoginDto { isValid = result.isValid, user = result.user };
+            //return result.isValid ? result.user : null;
         }
     }
 }
