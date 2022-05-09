@@ -24,9 +24,9 @@ namespace LibraryApp.Controllers
 
         [Route("GetByTerminalId")]
         [HttpGet]
-        public List<BookCopy> GetBookCopiesByTerminal(Guid terminalId)
+        public List<BookCopyDto> GetBookCopiesByTerminal(Guid terminalId)
         {
-            return _bookCopyBusinessLogicService.GetBookCopiesByTerminal(terminalId);   
+            return _bookCopyBusinessLogicService.GetBookCopiesByTerminal(terminalId).ToList().Select(x => new BookCopyDto(x)).ToList();   
         }
 
         [HttpPost("BorrowBook")]

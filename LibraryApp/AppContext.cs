@@ -16,7 +16,7 @@ namespace LibraryApp
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Library;User ID=cristi;Password=Em140513");
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog=Library;User ID=cristi;Password=123456");
         }
     }
 }

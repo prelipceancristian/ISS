@@ -35,9 +35,19 @@ namespace LibraryApp.BusinessLogic
 
         public List<BookCopyBusinessObject> GetBookCopies()
         {
+            return ParseIntoBusinessObject(_bookCopyDataAccessService.GetBookCopies());
+        }
+
+        public List<BookCopyBusinessObject> GetBookCopiesByTerminal(Guid terminalId)
+        {
+            return ParseIntoBusinessObject(_bookCopyDataAccessService.GetBookCopiesByTerminal(terminalId));
+        }
+
+        private List<BookCopyBusinessObject> ParseIntoBusinessObject(List<BookCopy> list)
+        {
             var bookCopies = new List<BookCopyBusinessObject>();
 
-            foreach (var bookCopy in _bookCopyDataAccessService.GetBookCopies())
+            foreach (var bookCopy in list)
             {
                 var bookCopyBusinessObject = new BookCopyBusinessObject(bookCopy);
                 bookCopyBusinessObject.Book = _bookDataAccessService.GetBookById(bookCopyBusinessObject.BookId);
@@ -45,11 +55,6 @@ namespace LibraryApp.BusinessLogic
             }
 
             return bookCopies;
-        }
-
-        public List<BookCopy> GetBookCopiesByTerminal(Guid terminalId)
-        {
-            return _bookCopyDataAccessService.GetBookCopiesByTerminal(terminalId);
         }
     }
 }

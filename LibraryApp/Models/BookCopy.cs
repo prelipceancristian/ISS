@@ -13,8 +13,8 @@ namespace LibraryApp.Models
         public Guid? UserId { get; set; }
 
         [ForeignKey("Terminals")]
-        public Guid? TerminalId { get; set; }
+        public Guid TerminalId { get; set; }
 
-        public DateTime ReturnDate { get; set; }
+        public DateTime? ReturnDate { get; set; }
     }
 }
