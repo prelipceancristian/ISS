@@ -30,6 +30,7 @@ namespace LibraryApp.DataAccess
         public void UpdateBookCopy(BookCopy bookCopy)
         {
             _context.BookCopies.Update(bookCopy);
+            _context.SaveChanges();
         }
     }
 }

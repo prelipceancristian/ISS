@@ -2,9 +2,8 @@
 {
     public class BorrowBookCopyDto
     {
-        public BorrowBookCopyDto() { }
-        public Guid BookCopyId;
-        public Guid UserId;
-        public DateTime Deadline;
+        public Guid BookCopyId { get; set; }
+        public Guid UserId { get; set; }
+        public DateTime Deadline{get;set;}
     }
 }

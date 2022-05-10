@@ -29,7 +29,7 @@ namespace LibraryApp.Controllers
             return _bookCopyBusinessLogicService.GetBookCopiesByTerminal(terminalId).ToList().Select(x => new BookCopyDto(x)).ToList();   
         }
 
-        [HttpPost("BorrowBook")]
+        [HttpPost]
         public bool BorrowBook(BorrowBookCopyDto borrowBookCopyDto)
         {
             return _bookCopyBusinessLogicService.BorrowBook(borrowBookCopyDto.BookCopyId, borrowBookCopyDto.UserId, borrowBookCopyDto.Deadline);

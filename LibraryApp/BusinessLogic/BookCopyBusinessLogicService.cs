@@ -35,12 +35,12 @@ namespace LibraryApp.BusinessLogic
 
         public List<BookCopyBusinessObject> GetBookCopies()
         {
-            return ParseIntoBusinessObject(_bookCopyDataAccessService.GetBookCopies());
+            return ParseIntoBusinessObject(_bookCopyDataAccessService.GetBookCopies().Where(x => x.UserId == null).ToList());
         }
 
         public List<BookCopyBusinessObject> GetBookCopiesByTerminal(Guid terminalId)
         {
-            return ParseIntoBusinessObject(_bookCopyDataAccessService.GetBookCopiesByTerminal(terminalId));
+            return ParseIntoBusinessObject(_bookCopyDataAccessService.GetBookCopiesByTerminal(terminalId).Where(x => x.UserId == null).ToList());
         }
 
         private List<BookCopyBusinessObject> ParseIntoBusinessObject(List<BookCopy> list)
